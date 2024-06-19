@@ -12,7 +12,7 @@ RUN apt-get update \
 COPY requirements.txt /requirements.txt
 
 RUN --mount=type=cache,target=/root/.cache/pip \
-    pip install --prefix=/pkg -r requirements.txt
+    pip install --prefix=/pkg -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
 
 # production stage
 FROM base AS production
@@ -28,7 +28,7 @@ ENV APP_WEB_URL http://127.0.0.1:3000
 EXPOSE 5001
 
 # set timezone
-ENV TZ UTC
+ENV TZ Asia/Shanghai
 
 WORKDIR /app/api
 
